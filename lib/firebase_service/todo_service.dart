@@ -27,8 +27,10 @@ class Todoservice {
   }
 
   static Stream<List<TodoModel>> todosStream() {
-    Stream<QuerySnapshot<Object?>> stream =
-        FirebaseFirestore.instance.collection("todo").snapshots();
+    Stream<QuerySnapshot<Object?>> stream = FirebaseFirestore.instance
+        .collection("todo")
+        .orderBy("dateTime")
+        .snapshots();
     return stream.map((event) => event.docs
         .map((e) => TodoModel.fromMap(e.data() as Map<String, dynamic>))
         .toList());
