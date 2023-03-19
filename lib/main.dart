@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:just_todo_for_job/ui/add_todo_page.dart';
 import 'package:just_todo_for_job/ui/home_page.dart';
+import 'package:just_todo_for_job/ui/text_test.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,12 +19,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       navigatorKey: navigatorKey,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.indigo,
       ),
-      routes: {"addTodoPage": (context) => const AddTodo()},
+      routes: {
+        "addTodoPage": (context) => const AddTodo(),
+        "htmlEditorExample": (context) => const HtmlEditorExample()
+      },
       home: const HomePage(),
     );
   }

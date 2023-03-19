@@ -19,13 +19,6 @@ class Todoservice {
         .set(todoModel.toMap());
   }
 
-  static Future<void> updateTodo(TodoModel todoModel) async {
-    await FirebaseFirestore.instance
-        .collection("todo")
-        .doc(todoModel.id)
-        .update(todoModel.toMap());
-  }
-
   static Stream<List<TodoModel>> todosStream() {
     Stream<QuerySnapshot<Object?>> stream = FirebaseFirestore.instance
         .collection("todo")
@@ -34,5 +27,19 @@ class Todoservice {
     return stream.map((event) => event.docs
         .map((e) => TodoModel.fromMap(e.data() as Map<String, dynamic>))
         .toList());
+  }
+
+  static Future<void> updateTodo(TodoModel todoModel) async {
+    await FirebaseFirestore.instance
+        .collection("todo")
+        .doc(todoModel.id)
+        .update(todoModel.toMap());
+  }
+
+  static Future<void> deleteTodo(TodoModel todoModel) async {
+    await FirebaseFirestore.instance
+        .collection("todo")
+        .doc(todoModel.id)
+        .delete();
   }
 }

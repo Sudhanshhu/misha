@@ -6,14 +6,18 @@ class CustomTextForm extends StatelessWidget {
   final TextEditingController controller;
   final String? Function(String?)? validator;
   final String hintText;
+  // final String? initValue;
   final int? maxLine;
+  final bool? enabled;
 
   const CustomTextForm({
     Key? key,
     required this.controller,
     required this.validator,
     required this.hintText,
+    this.enabled = true,
     this.maxLine,
+    // this.initValue,
   }) : super(key: key);
 
   @override
@@ -21,6 +25,8 @@ class CustomTextForm extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextFormField(
+        enabled: enabled,
+        // initialValue: initValue,
         controller: controller,
         validator: validator,
         // autovalidateMode: AutovalidateMode.onUserInteraction,
